@@ -4,8 +4,8 @@ import 'pessoa_exemplo_generated.dart' as exemplo;
 import 'user_user.schema_generated.dart' as usr;
 
 void main() {
-  final builder = fb.Builder(initialSize: 1024);
-  final builderUsr = fb.Builder(initialSize: 1024);
+  final builder = fb.Builder();
+  final builderUsr = fb.Builder();
 
   // Cria o buffer com os dados
   exemplo.PessoaObjectBuilder pessoaBuilder = exemplo.PessoaObjectBuilder(

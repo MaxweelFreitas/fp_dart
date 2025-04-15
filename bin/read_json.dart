@@ -7,8 +7,9 @@ void main() {
   final file = File('output_json.json');
   final jsonString = file.readAsStringSync();
 
-  final decoded = jsonDecode(jsonString);
-  final pessoas = decoded['pessoas'] as List;
+  final Map<String, dynamic> decoded = jsonDecode(jsonString);
+  final List<dynamic> pessoas = decoded['pessoas'];
+  print(pessoas.runtimeType);
 
   stopwatch.stop();
   print(

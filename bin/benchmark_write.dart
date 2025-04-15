@@ -14,6 +14,7 @@ void benchmarkFlatBuffersEscrita(int iterations) {
   for (int i = 0; i < iterations; i++) {
     stopwatch.start();
 
+    // ignore: unused_local_variable
     final builder = fb.Builder(initialSize: 1024 * 100);
 
     // Cria 1000 pessoas

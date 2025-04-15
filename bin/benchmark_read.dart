@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -11,8 +13,8 @@ void benchmarkJson(int iterations) {
     stopwatch.start();
     final file = File('output_json.json');
     final jsonString = file.readAsStringSync();
-    final decoded = jsonDecode(jsonString);
-    final pessoas = decoded['pessoas'] as List;
+    final Map<String, dynamic> decoded = jsonDecode(jsonString);
+    final List<dynamic> pessoas = decoded['pessoas'];
     stopwatch.stop();
     totalTime += stopwatch.elapsedMilliseconds;
     stopwatch.reset();
