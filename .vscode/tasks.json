@@ -1,0 +1,22 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build FlatBuffers",
+			"type": "shell",
+			"command": "flatc",
+			"args": [
+				"--dart",
+				"-o",
+				"lib",
+				"schema/pessoa.fbs",
+				"schema/user.fbs"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": []
+		}
+	]
+}
