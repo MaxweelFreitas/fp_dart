@@ -1,0 +1,9 @@
+namespace User.Schema;
+
+table User {
+  id:uint (key);
+  name:string;
+  email:string;
+}
+
+root_type User;

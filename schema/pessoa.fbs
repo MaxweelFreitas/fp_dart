@@ -1,0 +1,12 @@
+namespace exemplo;
+
+table Pessoa {
+  nome: string;
+  idade: int;
+}
+
+table PessoasWrapper {
+  pessoas: [Pessoa];
+}
+
+root_type PessoasWrapper;
