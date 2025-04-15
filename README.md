@@ -1,85 +1,81 @@
-# Benchmark de Performance entre JSON e FlatBuffers
+# ⚡ Performance Benchmark between JSON and FlatBuffers
 
-Este projeto realiza benchmarks para comparar o desempenho de **JSON** e **FlatBuffers** em termos de **escrita** e **leitura** de grandes quantidades de dados. A comparação foca especialmente em duas operações: o tempo necessário para gravar e ler dados de arquivos, além do tamanho dos arquivos gerados.
+This project performs benchmarks to compare the performance of **JSON** and **FlatBuffers** in terms of **writing** ✍️ and **reading** 📖 large amounts of data. The comparison focuses particularly on two operations: the time required to write and read data from files ⏱️, and the size of the generated files 💾.
 
-## Objetivo
+## 🎯 Objective
 
-O principal objetivo deste código é avaliar como o **JSON** e o **FlatBuffers** se comportam em termos de desempenho quando lidam com grandes volumes de dados, simulando um cenário onde há um número considerável de pessoas armazenadas em uma estrutura de dados. Cada pessoa contém um nome e uma idade.
+The main goal of this code is to evaluate how **JSON** and **FlatBuffers** perform when handling large volumes of data 📊, simulating a scenario where a significant number of people 👥 are stored in a data structure. Each person contains a name and an age.
 
-A comparação é feita nos seguintes critérios:
+The comparison is based on the following criteria:
 
-- **Tempo de Escrita**: Quanto tempo cada formato leva para gravar um grande número de registros (pessoas) em um arquivo.
-- **Tempo de Leitura**: Quanto tempo é necessário para ler os arquivos e processar os dados.
-- **Tamanho do Arquivo**: O tamanho do arquivo gerado em cada formato.
+- ⌛ **Write Time**: How long each format takes to write a large number of records to a file.
+- 🕒 **Read Time**: How long it takes to read the files and process the data.
+- 📁 **File Size**: The size of the generated file in each format.
 
-## Estrutura do Código
+## 🧱 Code Structure
 
-O código realiza os seguintes testes:
+The code performs the following tests:
 
-1. **JSON**:
-   - Cria uma lista de pessoas com atributos `nome` e `idade`.
-   - Serializa essa lista para JSON e grava em um arquivo (`output_json.json`).
-   - Lê o arquivo JSON e decodifica os dados.
+1. **📝 JSON**:
+   - Creates a list of people with attributes `name` and `age`.
+   - Serializes the list to JSON and writes it to a file (`output_json.json`).
+   - Reads the JSON file and decodes the data.
 
-2. **FlatBuffers**:
-   - Cria uma lista de objetos `Pessoa` e os serializa utilizando a biblioteca **FlatBuffers**.
-   - Grava os dados no formato binário (`output_flatbuffers.bin`).
-   - Lê os dados do arquivo binário e processa as informações.
+2. **📦 FlatBuffers**:
+   - Creates a list of `Person` objects and serializes them using the **FlatBuffers** library.
+   - Writes the data in binary format (`output_flatbuffers.bin`).
+   - Reads the binary file and processes the information.
 
-## Como Usar
+## ▶️ How to Use
 
-1. **Instalar Dependências**
+### 1. 🧰 Install Dependencies
 
-Certifique-se de ter o **Dart** instalado em seu sistema. Para instalar o Dart, siga a [documentação oficial](https://dart.dev/get-dart).
+Make sure you have **Dart** installed on your system. To install Dart, follow the [official documentation](https://dart.dev/get-dart).
 
-2. **Instalar Pacotes**
+### 2. 📦 Install Packages
 
-Antes de rodar o código, é necessário instalar as dependências do projeto. No terminal, navegue até a pasta do projeto e execute:
+Before running the code, you need to install the project dependencies. In your terminal, navigate to the project folder and run:
 
 ```bash
 dart pub get
 ```
 
-3. **Rodar os Benchmarks**
+### 3. 🚀 Run the Benchmarks
 
-Execute o código para começar o benchmark. O código irá realizar os testes de leitura e escrita para ambos os formatos e imprimir o tempo médio de execução para cada operação.
+Execute the code to start the benchmark. The script will perform the read and write tests for both formats and print the average execution time for each operation:
 
 ```bash
 dart run read_write.dart
 ```
 
-4. **Resultado Esperado**
+### 4. 📋 Expected Output
 
-O terminal irá exibir os seguintes resultados:
+The terminal will display the following results:
 
-- **Média de Tempo de Escrita**: O tempo médio necessário para gravar o arquivo para ambos os formatos (JSON e FlatBuffers).
-- **Média de Tempo de Leitura**: O tempo médio necessário para ler o arquivo e processar os dados.
-- **Tamanho do Arquivo**: O tamanho dos arquivos gerados (`output_json.json` e `output_flatbuffers.bin`) em bytes e MB.
+- ⏱️ **Average Write Time**: Time taken to write files (JSON and FlatBuffers).
+- 📖 **Average Read Time**: Time taken to read and process data from the files.
+- 💾 **File Size**: The size of the files generated (`output_json.json` and `output_flatbuffers.bin`) in bytes, KB, and MB.
 
-## Exemplo de Saída
+## 📈 Example Output
 
 ```bash
-📦 Benchmark de Escrita
-✅ JSON: Média de escrita (1000000 pessoas): 928.2ms
-✅ FlatBuffers: Média de escrita (1000000 pessoas): 475.1ms
+📦 Write Benchmark
+✅ JSON: Average write (1000000 people): 928.2ms
+✅ FlatBuffers: Average write (1000000 people): 475.1ms
 
-📥 Benchmark de Leitura
-✅ JSON: Média de leitura: 695.3ms
-✅ FlatBuffers: Média de leitura: 19.7ms
+📥 Read Benchmark
+✅ JSON: Average read: 695.3ms
+✅ FlatBuffers: Average read: 19.7ms
 
-📊 Tamanho dos Arquivos Gerados
+📊 Generated File Sizes
 📁 JSON: 36088903 bytes (35243.07 KB | 34.42 MB)
 📁 FlatBuffers: 43960024 bytes (42929.71 KB | 41.92 MB)
 ```
 
-## Conclusão
+## ✅ Conclusion
 
-Este benchmark permite comparar a performance de **JSON** e **FlatBuffers** para a manipulação de grandes volumes de dados. O **FlatBuffers** tende a ser mais eficiente em termos de tempo de leitura e tamanho do arquivo, enquanto o **JSON** é mais simples de trabalhar e pode ser preferível em certos cenários.
+This benchmark allows for a direct performance comparison between **JSON** and **FlatBuffers** when working with large datasets. While **FlatBuffers** tends to be faster at reading and more compact in size, **JSON** is easier to work with and might be preferable for human-readable or simple-use scenarios.
 
-## Licença
+## 📄 License
 
-Este projeto é de código aberto e está sob a [Licença MIT](LICENSE).
-
----
-
-Esse `README.md` apresenta de forma clara o objetivo, a configuração e os resultados esperados do código, além de fornecer instruções sobre como executar os benchmarks.
+This project is open source and available under the [MIT License](LICENSE).
