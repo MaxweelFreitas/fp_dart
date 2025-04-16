@@ -1,22 +1,26 @@
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
-import 'package:flat_buffers/flat_buffers.dart' as fb;
+import 'package:fp_dart/base/buffer_utils.dart';
 import 'package:fp_dart/base/const.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 import '../lib/pessoa_exemplo_generated.dart' as exemplo;
+import '../lib/user_usr_generated.dart' as usr;
 
 void main() async {
   final dio = Dio();
   final adapter = DioAdapter(dio: dio);
 
   // ----- Enviar pessoa única -----
-  final builder = fb.Builder(initialSize: 256);
-  final pessoa = exemplo.PessoaObjectBuilder(nome: 'João', idade: 25);
-  final pessoaOffset = pessoa.finish(builder);
-  builder.finish(pessoaOffset); // Finaliza o buffer corretamente
-  final Uint8List buffer = builder.buffer;
+  final buffer = buildFlatBuffer(
+    debug: true,
+    validate: true,
+    buildFn: (builder) {
+      final pessoa = exemplo.PessoaObjectBuilder(nome: 'João', idade: 25);
+      return pessoa.finish(builder);
+    },
+  );
 
   print('Buffer de Pessoa enviado: $buffer\n');
 
@@ -54,11 +58,13 @@ void main() async {
     exemplo.PessoaObjectBuilder(nome: 'Maria', idade: 30),
   ];
 
-  final builder2 = fb.Builder(initialSize: 512);
-  final wrapper = exemplo.PessoasWrapperObjectBuilder(pessoas: pessoas);
-  final wrapperOffset = wrapper.finish(builder2);
-  builder2.finish(wrapperOffset); // Finaliza o buffer corretamente
-  final Uint8List listaBuffer = builder2.buffer;
+  final listaBuffer = buildFlatBuffer(
+    initialSize: 512,
+    buildFn: (builder) {
+      final wrapper = exemplo.PessoasWrapperObjectBuilder(pessoas: pessoas);
+      return wrapper.finish(builder);
+    },
+  );
 
   print('Buffer de Lista de Pessoas enviado: $listaBuffer\n');
 

@@ -67,6 +67,8 @@ import 'dart:typed_data';
 
 import 'package:flat_buffers/flat_buffers.dart' as fb;
 
+import 'const.dart';
+
 /// Constrói um buffer FlatBuffer de forma genérica.
 ///
 /// - [initialSize]: tamanho inicial do buffer (ex: 256, 512).
@@ -82,21 +84,22 @@ Uint8List buildFlatBuffer({
   final builder = fb.Builder(initialSize: initialSize);
 
   if (debug) {
-    print('[FlatBuffer] Inicializando builder com $initialSize bytes...');
+    print(
+        '$orange[FlatBuffer] Inicializando builder com $initialSize bytes...');
   }
 
   final offset = buildFn(builder);
 
   if (validate && offset <= 0) {
-    throw Exception('[FlatBuffer] Offset inválido: $offset');
+    throw Exception('$orange[FlatBuffer] Offset inválido: $offset');
   }
 
   builder.finish(offset);
 
   if (debug) {
-    print('[FlatBuffer] Buffer finalizado com offset: $offset');
+    print('$orange[FlatBuffer] Buffer finalizado com offset: $offset');
     print(
-        '[FlatBuffer] Tamanho final do buffer: ${builder.buffer.lengthInBytes} bytes');
+        '$orange[FlatBuffer] Tamanho final do buffer: ${builder.buffer.lengthInBytes} bytes');
   }
 
   return builder.buffer;
@@ -115,20 +118,21 @@ T readFlatBuffer<T>({
   bool validate = false,
 }) {
   if (debug) {
-    print('[FlatBuffer] Iniciando leitura do buffer...');
-    print('[FlatBuffer] Tamanho do buffer: ${buffer.lengthInBytes} bytes');
+    print('$orange[FlatBuffer] Iniciando leitura do buffer...');
+    print(
+        '$orange[FlatBuffer] Tamanho do buffer: ${buffer.lengthInBytes} bytes');
   }
 
   final bc = fb.BufferContext.fromBytes(buffer);
   final rootOffset = bc.derefObject(0);
 
   if (validate && rootOffset <= 0) {
-    throw Exception('[FlatBuffer] Offset raiz inválido: $rootOffset');
+    throw Exception('$orange[FlatBuffer] Offset raiz inválido: $rootOffset');
   }
 
   final result = readerFn(bc, rootOffset);
 
-  if (debug) print('[FlatBuffer] Leitura concluída com sucesso.');
+  if (debug) print('$orange[FlatBuffer] Leitura concluída com sucesso.');
 
   return result;
 }

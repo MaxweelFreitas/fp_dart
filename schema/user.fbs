@@ -1,4 +1,4 @@
-namespace User.Schema;
+namespace Usr;
 
 table User {
   id:uint (key);
