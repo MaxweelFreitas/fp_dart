@@ -5,21 +5,22 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flat_buffers/flat_buffers.dart' as fb;
+import 'package:fp_dart/base/const.dart';
 import 'package:fp_dart/pessoa_exemplo_generated.dart' as exemplo;
 
 void main() {
   const iterations = 10;
   const totalPessoas = 1000000;
 
-  print('\n📦 Benchmark de Escrita');
+  print('\n📦$cyanBright Benchmark de Escrita');
   benchmarkJsonEscrita(iterations, totalPessoas);
   benchmarkFlatBuffersEscrita(iterations, totalPessoas);
 
-  print('\n📥 Benchmark de Leitura');
+  print('\n📥$cyanBright Benchmark de Leitura');
   benchmarkJsonLeitura(iterations);
   benchmarkFlatBuffersLeitura(iterations);
 
-  print('\n📊 Tamanho dos Arquivos Gerados');
+  print('\n📊$cyanBright Tamanho dos Arquivos Gerados');
   printFileSizes();
 }
 
@@ -52,7 +53,7 @@ void benchmarkJsonEscrita(int iterations, int totalPessoas) {
   }
 
   print(
-      '✅ JSON: Média de escrita ($totalPessoas pessoas): ${totalTime / iterations}ms');
+      '✅ JSON: Média de escrita ($totalPessoas pessoas): $orange${totalTime / iterations}ms');
 }
 
 void benchmarkJsonLeitura(int iterations) {
@@ -72,7 +73,7 @@ void benchmarkJsonLeitura(int iterations) {
     stopwatch.reset();
   }
 
-  print('✅ JSON: Média de leitura: ${totalTime / iterations}ms');
+  print('✅ JSON: Média de leitura: $orange${totalTime / iterations}ms');
 }
 
 //
@@ -122,7 +123,7 @@ void benchmarkFlatBuffersEscrita(int iterations, int totalPessoas) {
   }
 
   print(
-      '✅ FlatBuffers: Média de escrita ($totalPessoas pessoas): ${totalTime / iterations}ms');
+      '✅ FlatBuffers: Média de escrita ($totalPessoas pessoas): $orange${totalTime / iterations}ms');
 }
 
 void benchmarkFlatBuffersLeitura(int iterations) {
@@ -142,7 +143,7 @@ void benchmarkFlatBuffersLeitura(int iterations) {
     stopwatch.reset();
   }
 
-  print('✅ FlatBuffers: Média de leitura: ${totalTime / iterations}ms');
+  print('✅ FlatBuffers: Média de leitura: $orange${totalTime / iterations}ms');
 }
 
 //
@@ -157,9 +158,9 @@ void printFileSizes() {
   final fbSize = fbFile.existsSync() ? fbFile.lengthSync() : 0;
 
   print(
-    '📁 JSON: ${jsonSize} bytes (${(jsonSize / 1024).toStringAsFixed(2)} KB | ${(jsonSize / (1024 * 1024)).toStringAsFixed(2)} MB)',
+    '📁 JSON: ${jsonSize} bytes $orange(${(jsonSize / 1024).toStringAsFixed(2)} KB | ${(jsonSize / (1024 * 1024)).toStringAsFixed(2)} MB)',
   );
   print(
-    '📁 FlatBuffers: ${fbSize} bytes (${(fbSize / 1024).toStringAsFixed(2)} KB | ${(fbSize / (1024 * 1024)).toStringAsFixed(2)} MB)',
+    '📁 FlatBuffers: ${fbSize} bytes $orange(${(fbSize / 1024).toStringAsFixed(2)} KB | ${(fbSize / (1024 * 1024)).toStringAsFixed(2)} MB)',
   );
 }
