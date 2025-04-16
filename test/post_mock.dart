@@ -41,7 +41,7 @@ void main() async {
   try {
     final pessoaRecebida = exemplo.Pessoa(data);
     print(
-      'Pessoa recebida:\n - nome=${pessoaRecebida.nome}, idade=${pessoaRecebida.idade}\n',
+      'Pessoa recebida:\n\x1B[38;2;255;165;0m - nome: ${pessoaRecebida.nome}, idade: ${pessoaRecebida.idade}\n',
     );
   } on Exception catch (e) {
     print('Erro ao ler pessoa: $e');
@@ -84,6 +84,6 @@ void main() async {
 
   print('Lista de pessoas recebida:');
   for (final exemplo.Pessoa p in wrapperLido.pessoas ?? []) {
-    print(' - ${p.nome}, idade: ${p.idade}');
+    print('\x1B[38;2;255;165;0m - nome: ${p.nome}, idade: ${p.idade}');
   }
 }
