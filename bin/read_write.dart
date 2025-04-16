@@ -87,8 +87,7 @@ void benchmarkFlatBuffersEscrita(int iterations, int totalPessoas) {
     stopwatch.start();
 
     // Criar o builder com um tamanho inicial maior para evitar alocações repetidas
-    final builder =
-        fb.Builder(initialSize: 1024 * 1024 * 128, deduplicateTables: false);
+    final builder = fb.Builder(initialSize: 1024 * 1024 * 64);
 
     // Criar os objetos de pessoa
     final pessoasObjBuilders = <exemplo.PessoaObjectBuilder>[];
