@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flat_buffers/flat_buffers.dart' as fb;
+import 'package:fp_dart/base/const.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 import '../lib/pessoa_exemplo_generated.dart' as exemplo;
@@ -41,7 +42,7 @@ void main() async {
   try {
     final pessoaRecebida = exemplo.Pessoa(data);
     print(
-      'Pessoa recebida:\n\x1B[38;2;255;165;0m - nome: ${pessoaRecebida.nome}, idade: ${pessoaRecebida.idade}\n',
+      'Pessoa recebida:\n$orange - nome: ${pessoaRecebida.nome}, idade: ${pessoaRecebida.idade}\n',
     );
   } on Exception catch (e) {
     print('Erro ao ler pessoa: $e');
@@ -84,6 +85,6 @@ void main() async {
 
   print('Lista de pessoas recebida:');
   for (final exemplo.Pessoa p in wrapperLido.pessoas ?? []) {
-    print('\x1B[38;2;255;165;0m - nome: ${p.nome}, idade: ${p.idade}');
+    print('$orange - nome: ${p.nome}, idade: ${p.idade}');
   }
 }
