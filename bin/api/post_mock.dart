@@ -5,7 +5,7 @@ import 'package:fp_dart/base/buffer_utils.dart';
 import 'package:fp_dart/base/const.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
-import '../lib/pessoa_exemplo_generated.dart' as exemplo;
+import '../../lib/pessoa_exemplo_generated.dart' as exemplo;
 
 void main() async {
   final dio = Dio();
