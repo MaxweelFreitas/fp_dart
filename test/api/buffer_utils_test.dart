@@ -1,12 +1,13 @@
 import 'dart:typed_data';
 
 import 'package:fp_dart/base/buffer_utils.dart';
+import 'package:fp_dart/base/const.dart';
 import 'package:test/test.dart';
 
 import '../../lib/pessoa_exemplo_generated.dart' as exemplo;
 
 void main() {
-  group('FlatBuffer Utils', () {
+  group('$limeGreen FlatBuffer Utils →$reset', () {
     test('Cria e lê uma Pessoa com sucesso', () {
       final buffer = buildFlatBuffer(
         initialSize: 64,
@@ -16,7 +17,11 @@ void main() {
         },
       );
 
-      final pessoaLida = exemplo.Pessoa(buffer);
+      final pessoaLida = readFlatBuffer<exemplo.Pessoa>(
+        buffer,
+        exemplo.Pessoa.new,
+        debug: true,
+      );
 
       expect(pessoaLida.nome, equals('João'));
       expect(pessoaLida.idade, equals(42));
@@ -36,7 +41,11 @@ void main() {
         },
       );
 
-      final wrapperLido = exemplo.PessoasWrapper(buffer);
+      final wrapperLido = readFlatBuffer<exemplo.PessoasWrapper>(
+        buffer,
+        exemplo.PessoasWrapper.new,
+        debug: true,
+      );
 
       expect(wrapperLido.pessoas?.length, equals(2));
       expect(wrapperLido.pessoas?[0].nome, equals('Alice'));
@@ -62,7 +71,12 @@ void main() {
         },
       );
 
-      final pessoaLida = exemplo.Pessoa(buffer);
+      final pessoaLida = readFlatBuffer<exemplo.Pessoa>(
+        buffer,
+        exemplo.Pessoa.new,
+        debug: true,
+      );
+
       expect(pessoaLida.nome, equals('Debug'));
       expect(pessoaLida.idade, equals(99));
     });
@@ -76,7 +90,12 @@ void main() {
         },
       );
 
-      final pessoaLida = exemplo.Pessoa(buffer);
+      final pessoaLida = readFlatBuffer<exemplo.Pessoa>(
+        buffer,
+        exemplo.Pessoa.new,
+        debug: true,
+      );
+
       expect(pessoaLida.nome, equals('Grande'));
       expect(pessoaLida.idade, equals(1));
     });
@@ -104,7 +123,12 @@ void main() {
         },
       );
 
-      final pessoaLida = exemplo.Pessoa(buffer);
+      final pessoaLida = readFlatBuffer<exemplo.Pessoa>(
+        buffer,
+        exemplo.Pessoa.new,
+        debug: true,
+      );
+
       expect(pessoaLida.nome, equals(''));
       expect(pessoaLida.idade, equals(0));
     });
