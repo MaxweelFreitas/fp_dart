@@ -5,7 +5,7 @@ import 'dart:io';
 
 import 'package:fp_dart/pessoa_exemplo_generated.dart' as exemplo;
 
-void benchmarkJson(int iterations) {
+void benchmarkJson(final int iterations) {
   final stopwatch = Stopwatch();
   int totalTime = 0;
 
@@ -23,7 +23,7 @@ void benchmarkJson(int iterations) {
   print('✅ JSON: Média de leitura de pessoas: ${totalTime / iterations}ms');
 }
 
-void benchmarkFlatBuffers(int iterations) {
+void benchmarkFlatBuffers(final int iterations) {
   final stopwatch = Stopwatch();
   int totalTime = 0;
 
@@ -40,7 +40,8 @@ void benchmarkFlatBuffers(int iterations) {
   }
 
   print(
-      '✅ FlatBuffers: Média de leitura de pessoas: ${totalTime / iterations}ms');
+    '✅ FlatBuffers: Média de leitura de pessoas: ${totalTime / iterations}ms',
+  );
 }
 
 void main() {

@@ -76,16 +76,17 @@ import 'const.dart';
 /// - [debug]: se `true`, imprime logs de criação.
 /// - [validate]: se `true`, verifica se o offset é válido.
 Uint8List buildFlatBuffer({
-  int initialSize = 256,
-  required int Function(fb.Builder builder) buildFn,
-  bool debug = false,
-  bool validate = false,
+  final int initialSize = 256,
+  required final int Function(fb.Builder builder) buildFn,
+  final bool debug = false,
+  final bool validate = false,
 }) {
   final builder = fb.Builder(initialSize: initialSize);
 
   if (debug) {
     print(
-        '$orange[FlatBuffer] Inicializando builder com $initialSize bytes...');
+      '$orange[FlatBuffer] Inicializando builder com $initialSize bytes...',
+    );
   }
 
   final offset = buildFn(builder);
@@ -99,7 +100,8 @@ Uint8List buildFlatBuffer({
   if (debug) {
     print('$orange[FlatBuffer] Buffer finalizado com offset: $offset');
     print(
-        '$orange[FlatBuffer] Tamanho final do buffer: ${builder.buffer.lengthInBytes} bytes');
+      '$orange[FlatBuffer] Tamanho final do buffer: ${builder.buffer.lengthInBytes} bytes',
+    );
   }
 
   return builder.buffer;
@@ -112,15 +114,16 @@ Uint8List buildFlatBuffer({
 /// - [debug]: se `true`, imprime logs de leitura.
 /// - [validate]: se `true`, valida o offset do objeto.
 T readFlatBuffer<T>({
-  required Uint8List buffer,
-  required T Function(fb.BufferContext bc, int offset) readerFn,
-  bool debug = false,
-  bool validate = false,
+  required final Uint8List buffer,
+  required final T Function(fb.BufferContext bc, int offset) readerFn,
+  final bool debug = false,
+  final bool validate = false,
 }) {
   if (debug) {
     print('$orange[FlatBuffer] Iniciando leitura do buffer...');
     print(
-        '$orange[FlatBuffer] Tamanho do buffer: ${buffer.lengthInBytes} bytes');
+      '$orange[FlatBuffer] Tamanho do buffer: ${buffer.lengthInBytes} bytes',
+    );
   }
 
   final bc = fb.BufferContext.fromBytes(buffer);

@@ -6,7 +6,6 @@ import 'package:fp_dart/base/const.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 import '../lib/pessoa_exemplo_generated.dart' as exemplo;
-import '../lib/user_usr_generated.dart' as usr;
 
 void main() async {
   final dio = Dio();
@@ -16,7 +15,7 @@ void main() async {
   final buffer = buildFlatBuffer(
     debug: true,
     validate: true,
-    buildFn: (builder) {
+    buildFn: (final builder) {
       final pessoa = exemplo.PessoaObjectBuilder(nome: 'João', idade: 25);
       return pessoa.finish(builder);
     },
@@ -27,7 +26,7 @@ void main() async {
   // Mock da API
   adapter.onPost(
     '/api/pessoa',
-    (server) => server.reply(200, buffer),
+    (final server) => server.reply(200, buffer),
     data: buffer,
     headers: {'Content-Type': 'application/octet-stream'},
   );
@@ -60,7 +59,7 @@ void main() async {
 
   final listaBuffer = buildFlatBuffer(
     initialSize: 512,
-    buildFn: (builder) {
+    buildFn: (final builder) {
       final wrapper = exemplo.PessoasWrapperObjectBuilder(pessoas: pessoas);
       return wrapper.finish(builder);
     },
@@ -71,7 +70,7 @@ void main() async {
   // Mock da resposta
   adapter.onPost(
     '/api/pessoas',
-    (server) => server.reply(200, listaBuffer),
+    (final server) => server.reply(200, listaBuffer),
     data: listaBuffer,
     headers: {'Content-Type': 'application/octet-stream'},
   );

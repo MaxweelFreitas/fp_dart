@@ -15,10 +15,12 @@ void main() {
   final pessoas = <exemplo.PessoaObjectBuilder>[];
 
   for (int i = 0; i < total; i++) {
-    pessoas.add(exemplo.PessoaObjectBuilder(
-      nome: 'Pessoa_$i',
-      idade: random.nextInt(100),
-    ));
+    pessoas.add(
+      exemplo.PessoaObjectBuilder(
+        nome: 'Pessoa_$i',
+        idade: random.nextInt(100),
+      ),
+    );
   }
 
   // Usa o ObjectBuilder gerado para a tabela wrapper
@@ -35,6 +37,7 @@ void main() {
 
   stopwatch.stop();
   print(
-      '✅ FlatBuffers: Codificados $total pessoas em ${stopwatch.elapsedMilliseconds}ms');
+    '✅ FlatBuffers: Codificados $total pessoas em ${stopwatch.elapsedMilliseconds}ms',
+  );
   print('📦 Tamanho final do arquivo: ${data.lengthInBytes ~/ 1024} KB');
 }

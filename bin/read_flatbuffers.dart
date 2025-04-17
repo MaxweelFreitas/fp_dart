@@ -23,5 +23,6 @@ void main() {
 
   stopwatch.stop();
   print(
-      '✅ FlatBuffers: Lidos $total pessoas em ${stopwatch.elapsedMilliseconds}ms');
+    '✅ FlatBuffers: Lidos $total pessoas em ${stopwatch.elapsedMilliseconds}ms',
+  );
 }

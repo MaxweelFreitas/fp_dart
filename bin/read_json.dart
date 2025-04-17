@@ -13,5 +13,6 @@ void main() {
 
   stopwatch.stop();
   print(
-      '✅ JSON: Lidos ${pessoas.length} pessoas em ${stopwatch.elapsedMilliseconds}ms');
+    '✅ JSON: Lidos ${pessoas.length} pessoas em ${stopwatch.elapsedMilliseconds}ms',
+  );
 }

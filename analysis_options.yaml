@@ -38,7 +38,7 @@ linter:
     # - avoid_print
     - prefer_single_quotes
     - invariant_booleans
-    - sort_constructors_first: false
+    - sort_constructors_first
     - unnecessary_null_checks
     - prefer_const_literals_to_create_immutables
     - avoid_catches_without_on_clauses
@@ -52,4 +52,10 @@ linter:
     - avoid_void_async
     - camel_case_extensions
     - prefer_mixin
+    - require_trailing_commas
+    - prefer_final_parameters
+    - prefer_const_constructors_in_immutables
+    - always_declare_return_types
+    - sized_box_for_whitespace
+    - await_only_futures
     

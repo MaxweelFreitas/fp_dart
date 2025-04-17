@@ -7,7 +7,7 @@ void main() {
   benchmarkFlatBuffersEscrita(10); // Faz 10 iterações e calcula a média
 }
 
-void benchmarkFlatBuffersEscrita(int iterations) {
+void benchmarkFlatBuffersEscrita(final int iterations) {
   final stopwatch = Stopwatch();
   int totalTime = 0;
 
@@ -20,10 +20,12 @@ void benchmarkFlatBuffersEscrita(int iterations) {
     // Cria 1000 pessoas
     final pessoasObjBuilders = <exemplo.PessoaObjectBuilder>[];
     for (int j = 0; j < 1000; j++) {
-      pessoasObjBuilders.add(exemplo.PessoaObjectBuilder(
-        nome: 'Pessoa $j',
-        idade: 20 + j,
-      ));
+      pessoasObjBuilders.add(
+        exemplo.PessoaObjectBuilder(
+          nome: 'Pessoa $j',
+          idade: 20 + j,
+        ),
+      );
     }
 
     // Monta o wrapper
@@ -44,5 +46,6 @@ void benchmarkFlatBuffersEscrita(int iterations) {
   }
 
   print(
-      '✅ FlatBuffers Escrita (via ObjectBuilder): Média de escrita: ${totalTime / iterations}ms');
+    '✅ FlatBuffers Escrita (via ObjectBuilder): Média de escrita: ${totalTime / iterations}ms',
+  );
 }

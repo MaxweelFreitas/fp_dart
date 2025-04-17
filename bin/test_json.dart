@@ -27,6 +27,7 @@ void main() {
 
   stopwatch.stop();
   print(
-      '✅ JSON: Codificados $total pessoas em ${stopwatch.elapsedMilliseconds}ms');
+    '✅ JSON: Codificados $total pessoas em ${stopwatch.elapsedMilliseconds}ms',
+  );
   print('📦 Tamanho final do arquivo: ${bytes.length ~/ 1024} KB');
 }

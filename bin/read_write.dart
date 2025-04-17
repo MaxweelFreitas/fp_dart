@@ -28,7 +28,7 @@ void main() {
 // ===== JSON =====
 //
 
-void benchmarkJsonEscrita(int iterations, int totalPessoas) {
+void benchmarkJsonEscrita(final int iterations, final int totalPessoas) {
   final stopwatch = Stopwatch();
   int totalTime = 0;
 
@@ -36,11 +36,12 @@ void benchmarkJsonEscrita(int iterations, int totalPessoas) {
     stopwatch.start();
 
     final pessoas = List.generate(
-        totalPessoas,
-        (j) => {
-              'nome': 'Pessoa $j',
-              'idade': 20 + (j % 100),
-            });
+      totalPessoas,
+      (final j) => {
+        'nome': 'Pessoa $j',
+        'idade': 20 + (j % 100),
+      },
+    );
 
     final jsonMap = {'pessoas': pessoas};
     final jsonString = jsonEncode(jsonMap);
@@ -53,10 +54,11 @@ void benchmarkJsonEscrita(int iterations, int totalPessoas) {
   }
 
   print(
-      '✅ JSON: Média de escrita ($totalPessoas pessoas): $orange${totalTime / iterations}ms');
+    '✅ JSON: Média de escrita ($totalPessoas pessoas): $orange${totalTime / iterations}ms',
+  );
 }
 
-void benchmarkJsonLeitura(int iterations) {
+void benchmarkJsonLeitura(final int iterations) {
   final stopwatch = Stopwatch();
   int totalTime = 0;
 
@@ -80,7 +82,7 @@ void benchmarkJsonLeitura(int iterations) {
 // ===== FlatBuffers =====
 //
 
-void benchmarkFlatBuffersEscrita(int iterations, int totalPessoas) {
+void benchmarkFlatBuffersEscrita(final int iterations, final int totalPessoas) {
   final stopwatch = Stopwatch();
   int totalTime = 0;
 
@@ -93,15 +95,18 @@ void benchmarkFlatBuffersEscrita(int iterations, int totalPessoas) {
     // Criar os objetos de pessoa
     final pessoasObjBuilders = <exemplo.PessoaObjectBuilder>[];
     for (int j = 0; j < totalPessoas; j++) {
-      pessoasObjBuilders.add(exemplo.PessoaObjectBuilder(
-        nome: 'Pessoa $j',
-        idade: 20 + (j % 100),
-      ));
+      pessoasObjBuilders.add(
+        exemplo.PessoaObjectBuilder(
+          nome: 'Pessoa $j',
+          idade: 20 + (j % 100),
+        ),
+      );
     }
 
     // Adicionar as pessoas ao builder
-    final pessoasOffset = builder
-        .writeList(pessoasObjBuilders.map((e) => e.finish(builder)).toList());
+    final pessoasOffset = builder.writeList(
+      pessoasObjBuilders.map((final e) => e.finish(builder)).toList(),
+    );
 
     // Criar o wrapper com as pessoas utilizando o builder
     builder.startTable(1);
@@ -123,10 +128,11 @@ void benchmarkFlatBuffersEscrita(int iterations, int totalPessoas) {
   }
 
   print(
-      '✅ FlatBuffers: Média de escrita ($totalPessoas pessoas): $orange${totalTime / iterations}ms');
+    '✅ FlatBuffers: Média de escrita ($totalPessoas pessoas): $orange${totalTime / iterations}ms',
+  );
 }
 
-void benchmarkFlatBuffersLeitura(int iterations) {
+void benchmarkFlatBuffersLeitura(final int iterations) {
   final stopwatch = Stopwatch();
   int totalTime = 0;
 
