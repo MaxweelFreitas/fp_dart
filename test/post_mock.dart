@@ -13,8 +13,6 @@ void main() async {
 
   // ----- Enviar pessoa única -----
   final buffer = buildFlatBuffer(
-    debug: true,
-    validate: true,
     buildFn: (final builder) {
       final pessoa = exemplo.PessoaObjectBuilder(nome: 'João', idade: 25);
       return pessoa.finish(builder);

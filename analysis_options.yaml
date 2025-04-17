@@ -9,6 +9,7 @@ analyzer:
     avoid_redundant_argument_values: error
     avoid_dynamic_calls: error
     prefer_typing_uninitialized_variables: error
+    require_trailing_commas: error
     use_setters_to_change_properties: warning
     avoid_empty_else: warning
 
